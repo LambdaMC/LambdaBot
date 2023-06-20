@@ -10,8 +10,6 @@ import org.bukkit.OfflinePlayer;
 
 import java.awt.*;
 
-import static com.kryeit.LambdaBot.allPlayers;
-
 public class JugadorCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {

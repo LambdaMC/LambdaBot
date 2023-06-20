@@ -6,9 +6,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
 
-import static com.kryeit.LambdaBot.ender;
-import static com.kryeit.LambdaBot.muriplz;
-
 public class IPCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {

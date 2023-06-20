@@ -1,8 +1,6 @@
 package com.kryeit.utils;
 
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.UserSnowflake;
 
 import java.util.concurrent.TimeUnit;
 
