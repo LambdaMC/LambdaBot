@@ -20,7 +20,7 @@ public class LambdaBot {
     public static Guild guild;
     public static UserSnowflake muriplz = User.fromId("235400519365951488");
     public static UserSnowflake ender = User.fromId("774275869300228096");
-    public static MessageChannel normas = guild.getTextChannelById("1119277621696549086");
+    public static MessageChannel normas;
 
     public static void main(String[] arguments) throws Exception
     {
@@ -33,6 +33,7 @@ public class LambdaBot {
         api.addEventListener(new InfoCommand());
 
         guild = api.getGuildById("1119257557245104202");
+        normas = guild.getTextChannelById("1119277621696549086");
         guild.updateCommands().addCommands(
                 Commands.slash("normas", "Manda las normas."),
                 Commands.slash("ip", "Manda la IP del servidor."),
