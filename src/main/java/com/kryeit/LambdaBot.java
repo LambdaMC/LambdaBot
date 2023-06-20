@@ -1,6 +1,7 @@
 package com.kryeit;
 
 import com.kryeit.commands.IPCommand;
+import com.kryeit.commands.InfoCommand;
 import com.kryeit.commands.NormasCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -31,7 +32,7 @@ public class LambdaBot {
         guild.updateCommands().addCommands(
                 Commands.slash("normas", "Manda las normas."),
                 Commands.slash("ip", "Manda la IP del servidor."),
-                Commands.slash("info", "Manda la Información principal del servidor.")
+                Commands.slash("informacion", "Manda la Información principal del servidor.")
         ).queue();
 
     }
