@@ -16,6 +16,6 @@ public class onPlayerLeave implements Listener {
     @EventHandler
     public void onJoin(PlayerQuitEvent e) {
         int playerCount = Bukkit.getOnlinePlayers().size();
-        api.getPresence().setActivity(Activity.watching("a " + playerCount + " jugadores"));
+        api.getPresence().setActivity(Activity.watching("a " + (playerCount - 1) + " jugadores"));
     }
 }

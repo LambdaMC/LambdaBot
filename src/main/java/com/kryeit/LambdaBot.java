@@ -2,6 +2,7 @@ package com.kryeit;
 
 import com.kryeit.commands.IPCommand;
 import com.kryeit.commands.InfoCommand;
+import com.kryeit.commands.JugadorCommand;
 import com.kryeit.commands.NormasCommand;
 import com.kryeit.listeners.onPlayerJoin;
 import com.kryeit.listeners.onPlayerLeave;
@@ -9,8 +10,14 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.interactions.commands.Command;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.requests.restaction.CommandCreateAction;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,12 +26,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LambdaBot extends JavaPlugin {
     public static Guild guild;
     public static UserSnowflake muriplz = User.fromId("235400519365951488");
     public static UserSnowflake ender = User.fromId("774275869300228096");
     public static MessageChannel normas;
+
+    public static List<String> allPlayers;
 
     public static Role staff;
     public static JDA api;
@@ -50,10 +62,9 @@ public class LambdaBot extends JavaPlugin {
         }
 
         registerDiscordEvents();
+        registerMinecraftEvents();
         populateChannelObjects();
         addDiscordCommands();
-
-
     }
 
     @Override
@@ -74,19 +85,33 @@ public class LambdaBot extends JavaPlugin {
         api.addEventListener(new NormasCommand());
         api.addEventListener(new IPCommand());
         api.addEventListener(new InfoCommand());
+        api.addEventListener(new JugadorCommand());
     }
 
     public void populateChannelObjects() {
         guild = api.getGuildById("1119257557245104202");
         normas = guild.getTextChannelById("1119277621696549086");
         staff = guild.getRoleById("1119279826017202326");
+        allPlayers = new ArrayList<>();
+        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+            allPlayers.add(player.getName());
+        }
     }
 
     public void addDiscordCommands() {
+        List<Command.Choice> playerChoices = new ArrayList<>();
+        for (String player : allPlayers) {
+            playerChoices.add(new Command.Choice(player, player));
+        }
         guild.updateCommands().addCommands(
                 Commands.slash("normas", "Manda las normas."),
                 Commands.slash("ip", "Manda la IP del servidor."),
-                Commands.slash("informacion", "Manda la información principal del servidor.")
+                Commands.slash("informacion", "Manda la información principal del servidor."),
+                Commands.slash("jugador", "Manda información sobre un jugador")
+                        .addOptions(
+                                new OptionData(OptionType.STRING, "nombre", "El nombre del jugador")
+                                        .addChoices(playerChoices)
+                        )
         ).queue();
     }
 
