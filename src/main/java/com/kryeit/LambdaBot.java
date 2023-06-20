@@ -1,14 +1,12 @@
 package com.kryeit;
 
+import com.kryeit.commands.IPCommand;
 import com.kryeit.commands.NormasCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,11 +24,14 @@ public class LambdaBot {
                 .build()
                 .awaitReady();
         api.addEventListener(new NormasCommand());
+        api.addEventListener(new IPCommand());
 
         guild = api.getGuildById("1119257557245104202");
         guild.updateCommands().addCommands(
-                Commands.slash("normas", "Manda las normas.")
+                Commands.slash("normas", "Manda las normas."),
+                Commands.slash("Ip", "Manda la Ip.")
         ).queue();
+
     }
 
 }
