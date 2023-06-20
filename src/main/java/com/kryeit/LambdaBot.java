@@ -56,6 +56,11 @@ public class LambdaBot extends JavaPlugin {
 
     }
 
+    @Override
+    public void onDisable() {
+        api.shutdown();
+    }
+
     public void registerMinecraftEvents() {
         registerMinecraftEvent(new onPlayerJoin());
         registerMinecraftEvent(new onPlayerLeave());
