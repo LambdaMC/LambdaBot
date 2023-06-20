@@ -14,7 +14,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -32,7 +34,12 @@ public class LambdaBot extends JavaPlugin {
         String token;
 
         try {
-            token = new String(Files.readAllBytes(Paths.get("secret.txt"))).trim();
+            InputStream in = this.getClass().getResourceAsStream("/secret.txt");
+            if (in == null) {
+                throw new FileNotFoundException("Resource not found: secret.txt");
+            }
+            token = new String(in.readAllBytes()).trim();
+            in.close();
             api = JDABuilder.createDefault(token)
                     .setActivity(Activity.watching("a " + Bukkit.getOnlinePlayers().size() + " jugadores"))
                     .build()

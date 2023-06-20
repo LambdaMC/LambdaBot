@@ -6,4 +6,4 @@ bin/
 .gradle/
 .project
 .classpath
-secret.txt
+src/main/resources/secret.txt
