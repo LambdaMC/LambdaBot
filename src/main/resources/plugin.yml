@@ -1,3 +1,5 @@
-name: LambdaBot
 main: com.kryeit.LambdaBot
 version: 1.0
+authors: [MuriPlz,Ender]
+api-version: 1.18
+name: LambdaBot
