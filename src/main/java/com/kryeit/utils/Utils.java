@@ -19,15 +19,15 @@ public class Utils {
                 - TimeUnit.DAYS.toMinutes(days));
 
         if (days != 0) {
-            return days + " días " + hours + " horas " + minutes + " minutos ";
+            return days + " días " + hours + " horas.";
         } else {
             if (hours != 0) {
-                return hours + " horas " + minutes + " minutos ";
+                return hours + " horas " + minutes + " minutos.";
             } else {
                 if (minutes != 0) {
-                    return minutes + " minutos ";
+                    return minutes + " minutos.";
                 } else {
-                    return " menos de un minuto";
+                    return " menos de un minuto.";
                 }
             }
 
