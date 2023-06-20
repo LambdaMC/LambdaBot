@@ -19,19 +19,17 @@ public class Utils {
         int hours = (int) (TimeUnit.SECONDS.toHours(secondsx) - TimeUnit.DAYS.toHours(days));
         int minutes = (int) (TimeUnit.SECONDS.toMinutes(secondsx) - TimeUnit.HOURS.toMinutes(hours)
                 - TimeUnit.DAYS.toMinutes(days));
-        int seconds = (int) (TimeUnit.SECONDS.toSeconds(secondsx) - TimeUnit.MINUTES.toSeconds(minutes)
-                - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.DAYS.toSeconds(days));
 
         if (days != 0) {
-            return days + " días " + hours + " horas " + minutes + " minutos " + seconds + " segundos";
+            return days + " días " + hours + " horas " + minutes + " minutos ";
         } else {
             if (hours != 0) {
-                return hours + " horas " + minutes + " minutos " + seconds + " segundos";
+                return hours + " horas " + minutes + " minutos ";
             } else {
                 if (minutes != 0) {
-                    return minutes + " minutos " + seconds + " segundos";
+                    return minutes + " minutos ";
                 } else {
-                    return seconds + " segundos";
+                    return " menos de un minuto";
                 }
             }
 
