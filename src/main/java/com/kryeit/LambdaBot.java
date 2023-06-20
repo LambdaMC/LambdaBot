@@ -25,11 +25,13 @@ public class LambdaBot {
                 .awaitReady();
         api.addEventListener(new NormasCommand());
         api.addEventListener(new IPCommand());
+        api.addEventListener(new InfoCommand());
 
         guild = api.getGuildById("1119257557245104202");
         guild.updateCommands().addCommands(
                 Commands.slash("normas", "Manda las normas."),
-                Commands.slash("Ip", "Manda la Ip.")
+                Commands.slash("ip", "Manda la IP del servidor."),
+                Commands.slash("info", "Manda la Información principal del servidor.")
         ).queue();
 
     }
