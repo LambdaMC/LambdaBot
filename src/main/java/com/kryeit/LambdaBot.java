@@ -3,6 +3,7 @@ package com.kryeit;
 import com.kryeit.bukkitListeners.onPlayerJoin;
 import com.kryeit.bukkitListeners.onPlayerLeave;
 import com.kryeit.commands.*;
+import com.kryeit.discordListeners.LogEvents;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
@@ -27,6 +28,9 @@ public class LambdaBot extends JavaPlugin {
     public static UserSnowflake muriplz = User.fromId("235400519365951488");
     public static UserSnowflake ender = User.fromId("774275869300228096");
     public static MessageChannel normas;
+
+    public static MessageChannel logStaffChannel;
+
 
     public static List<String> allPlayers;
 
@@ -79,12 +83,14 @@ public class LambdaBot extends JavaPlugin {
         api.addEventListener(new InfoCommand());
         api.addEventListener(new JugadorCommand());
         api.addEventListener(new ConectadosCommand());
+        api.addEventListener(new LogEvents());
     }
 
     public void populateObjects() {
         guild = api.getGuildById("1119257557245104202");
         normas = guild.getTextChannelById("1119277621696549086");
         staff = guild.getRoleById("1119279826017202326");
+        logStaffChannel = guild.getTextChannelById("1120759327712624782");
         allPlayers = new ArrayList<>();
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             allPlayers.add(player.getName());
