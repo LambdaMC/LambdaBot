@@ -1,11 +1,8 @@
 package com.kryeit;
 
-import com.kryeit.commands.IPCommand;
-import com.kryeit.commands.InfoCommand;
-import com.kryeit.commands.JugadorCommand;
-import com.kryeit.commands.NormasCommand;
-import com.kryeit.listeners.onPlayerJoin;
-import com.kryeit.listeners.onPlayerLeave;
+import com.kryeit.bukkitListeners.onPlayerJoin;
+import com.kryeit.bukkitListeners.onPlayerLeave;
+import com.kryeit.commands.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
@@ -48,7 +45,7 @@ public class LambdaBot extends JavaPlugin {
             token = new String(in.readAllBytes()).trim();
             in.close();
             api = JDABuilder.createDefault(token)
-                    .setActivity(Activity.watching("a " + Bukkit.getOnlinePlayers().size() + " jugadores"))
+                    .setActivity(Activity.watching("a 0 jugadores"))
                     .build()
                     .awaitReady();
 
@@ -81,6 +78,7 @@ public class LambdaBot extends JavaPlugin {
         api.addEventListener(new IPCommand());
         api.addEventListener(new InfoCommand());
         api.addEventListener(new JugadorCommand());
+        api.addEventListener(new ConectadosCommand());
     }
 
     public void populateChannelObjects() {
@@ -102,6 +100,7 @@ public class LambdaBot extends JavaPlugin {
                 Commands.slash("normas", "Manda las normas."),
                 Commands.slash("ip", "Manda la IP del servidor."),
                 Commands.slash("informacion", "Manda la información principal del servidor."),
+                Commands.slash("conectados", "Manda una lista con los jugadores conectados"),
                 Commands.slash("jugador", "Manda información sobre un jugador")
                         .addOptions(
                                 new OptionData(OptionType.STRING, "nombre", "El nombre del jugador")

@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Statistic;
 
 import java.awt.*;
 
@@ -29,17 +30,20 @@ public class JugadorCommand extends ListenerAdapter {
             long currentTime = System.currentTimeMillis();
             long timeDifference = currentTime - lastPlayed;
 
+            String timePlayed = Utils.getTime(player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20);
+
             EmbedBuilder eb = new EmbedBuilder();
 
             eb.setColor(Color.ORANGE);
             eb.setThumbnail("https://minotar.net/helm/" + playerName +"/600.png");
             eb.setFooter("LambdaCraft");
-            eb.setAuthor("Informacón de " + playerName);
+            eb.setTitle(playerName);
+            eb.addField("Tiempo jugado", timePlayed,false);
             if(player.isOnline()) {
                 eb.addField("Última vez conectado", "Está conectado en el servidor", false);
 
             } else {
-                eb.addField("Última vez conectado", "Se ha conectado hace " + Utils.getTime((int)timeDifference/1000), false);
+                eb.addField("Última vez conectado", "Hace " + Utils.getTime((int) timeDifference/1000), false);
             }
 
             event.replyEmbeds(eb.build()).queue();
