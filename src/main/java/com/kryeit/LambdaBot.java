@@ -55,7 +55,7 @@ public class LambdaBot extends JavaPlugin {
 
         registerDiscordEvents();
         registerMinecraftEvents();
-        populateChannelObjects();
+        populateObjects();
         addDiscordCommands();
     }
 
@@ -81,7 +81,7 @@ public class LambdaBot extends JavaPlugin {
         api.addEventListener(new ConectadosCommand());
     }
 
-    public void populateChannelObjects() {
+    public void populateObjects() {
         guild = api.getGuildById("1119257557245104202");
         normas = guild.getTextChannelById("1119277621696549086");
         staff = guild.getRoleById("1119279826017202326");
