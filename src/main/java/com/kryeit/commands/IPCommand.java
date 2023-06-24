@@ -16,7 +16,7 @@ public class IPCommand extends ListenerAdapter {
             eb.setThumbnail("https://kryeit.com/images/lambdacraft.png");
             eb.setFooter("LambdaCraft");
             eb.setAuthor("Server IP");
-            eb.addField("IP: 5.9.144.150:7777", "Nombre: LambdaCraft", false);
+            eb.addField("IP: 5.9.144.150:7777", "Nombre: LambdaCraft\nVersión: 1.20.1", false);
 
             event.replyEmbeds(eb.build()).queue();
         }
