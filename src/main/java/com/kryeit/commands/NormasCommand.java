@@ -24,6 +24,7 @@ public class NormasCommand extends ListenerAdapter {
             eb.addField("2. \u26CF Respeta los jugadores", "- No hagas protecciones cerca de otros jugadores, a no ser que sea cerca de postes\n- Trata a los demás como te gustaría que te tratasen", false);
             eb.addField("3. \uD83C\uDFE0 Respeta zonas comunes", "- No destruyas zonas comunes\n- Respeta las granjas públicas", false);
             eb.addField("Contacta a los administradores si encuentras algún error", muriplz.getAsMention() + " y " + ender.getAsMention(), false);
+            eb.addField("Disclaimer", "No tenemos nada que ver con LandaCraft. Esto es un servidor totalmente distinto", false);
 
             event.replyEmbeds(eb.build()).queue();
         }
