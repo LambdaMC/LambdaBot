@@ -16,8 +16,8 @@ public class ConectadosCommand extends ListenerAdapter {
 
             eb.setColor(Color.ORANGE);
             eb.setThumbnail("https://kryeit.com/images/lambdacraft.png");
-            eb.setFooter("LambdaCraft");
-            eb.setTitle("LambdaCraft");
+            eb.setFooter("λCraft");
+            eb.setTitle("λCraft");
             String players = "";
             for(Player player : Bukkit.getOnlinePlayers()) {
                 players = players.concat("- " + player.getName() + "\n");

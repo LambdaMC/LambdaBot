@@ -36,7 +36,7 @@ public class JugadorCommand extends ListenerAdapter {
 
             eb.setColor(Color.ORANGE);
             eb.setThumbnail("https://minotar.net/helm/" + playerName +"/600.png");
-            eb.setFooter("LambdaCraft");
+            eb.setFooter("λCraft");
             eb.setTitle(playerName);
             eb.addField("Tiempo jugado", timePlayed,false);
             if(player.isOnline()) {

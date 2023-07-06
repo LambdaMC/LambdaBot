@@ -18,7 +18,7 @@ public class NormasCommand extends ListenerAdapter {
             eb.setColor(Color.GREEN);
             eb.setThumbnail("https://kryeit.com/images/lambdacraft.png");
             eb.setImage("https://images-ext-2.discordapp.net/external/0lOfZf6LqZepiqgAWCHM8JkV9Ef7csRXOXauMeRHaaQ/https/kryeit.com/images/lambda_title.png?width=1440&height=219");
-            eb.setFooter("LambdaCraft");
+            eb.setFooter("λCraft");
             eb.setAuthor("Normas de LambdaCraft");
             eb.addField("1. \uD83E\uDD16 Respeta el servidor", "- No construyas máquinas de lag\n- Utiliza los canales de Discord según su función", false);
             eb.addField("2. \u26CF Respeta los jugadores", "- No hagas protecciones cerca de otros jugadores, a no ser que sea cerca de postes\n- Trata a los demás como te gustaría que te tratasen", false);
