@@ -2,8 +2,6 @@ package com.kryeit.discordListeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
@@ -11,12 +9,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
-
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.kryeit.LambdaBot.guild;
 import static com.kryeit.LambdaBot.logStaffChannel;
 
 public class LogEvents extends ListenerAdapter {

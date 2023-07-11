@@ -19,8 +19,10 @@ public class ConectadosCommand extends ListenerAdapter {
             eb.setFooter("λCraft");
             eb.setTitle("λCraft");
             String players = "";
+            String name;
             for(Player player : Bukkit.getOnlinePlayers()) {
-                players = players.concat("- " + player.getName() + "\n");
+                name = player.getName().replace("_","\\_");
+                players = players.concat("- " + name + "\n");
             }
             eb.addField("Hay " + Bukkit.getOnlinePlayers().size() + " jugadores conectados:", players, false);
             event.replyEmbeds(eb.build()).queue();

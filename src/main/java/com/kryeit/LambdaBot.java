@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Listener;
@@ -57,9 +56,10 @@ public class LambdaBot extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        populateObjects();
+
         registerDiscordEvents();
         registerMinecraftEvents();
-        populateObjects();
         addDiscordCommands();
     }
 
@@ -102,16 +102,14 @@ public class LambdaBot extends JavaPlugin {
         for (String player : allPlayers) {
             playerChoices.add(new Command.Choice(player, player));
         }
+        guild.upsertCommand("jugador", "Manda información sobre un jugador")
+                .addOption(OptionType.STRING, "nombre", "El nombre del jugador", true, true)
+                .queue();
         guild.updateCommands().addCommands(
                 Commands.slash("normas", "Manda las normas."),
                 Commands.slash("ip", "Manda la IP del servidor."),
                 Commands.slash("informacion", "Manda la información principal del servidor."),
-                Commands.slash("conectados", "Manda una lista con los jugadores conectados"),
-                Commands.slash("jugador", "Manda información sobre un jugador")
-                        .addOptions(
-                                new OptionData(OptionType.STRING, "nombre", "El nombre del jugador")
-                                        .addChoices(playerChoices)
-                        )
+                Commands.slash("conectados", "Manda una lista con los jugadores conectados")
         ).queue();
     }
 

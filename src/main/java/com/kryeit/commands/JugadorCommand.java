@@ -2,6 +2,7 @@ package com.kryeit.commands;
 
 import com.kryeit.utils.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -10,6 +11,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JugadorCommand extends ListenerAdapter {
     @Override
@@ -23,6 +26,7 @@ public class JugadorCommand extends ListenerAdapter {
             }
 
             String playerName = playerNameOption.getAsString();
+            String name = playerName.replace("_","\\_");
 
             OfflinePlayer player = Bukkit.getOfflinePlayer(playerName);
 
@@ -37,7 +41,7 @@ public class JugadorCommand extends ListenerAdapter {
             eb.setColor(Color.ORANGE);
             eb.setThumbnail("https://minotar.net/helm/" + playerName +"/600.png");
             eb.setFooter("λCraft");
-            eb.setTitle(playerName);
+            eb.setTitle(name);
             eb.addField("Tiempo jugado", timePlayed,false);
             if(player.isOnline()) {
                 eb.addField("Última vez conectado", "Está conectado en el servidor", false);
@@ -48,5 +52,24 @@ public class JugadorCommand extends ListenerAdapter {
 
             event.replyEmbeds(eb.build()).queue();
         }
+    }
+
+    @Override
+    public void onCommandAutoCompleteInteraction(CommandAutoCompleteInteractionEvent event) {
+        if (!event.getName().equals("nombre")) return;
+        String value = event.getOption("nombre", "", OptionMapping::getAsString);
+        event.replyChoiceStrings(getNameSuggestions(value.toLowerCase())).queue();
+    }
+
+    private java.util.List<String> getNameSuggestions(String input) {
+        List<String> players = new ArrayList<>();
+        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+            if (players.size() >= 5) break;
+            String playerName = player.getName();
+            if (playerName != null && playerName.toLowerCase().contains(input) && !players.contains(playerName)) {
+                players.add(playerName);
+            }
+        }
+        return players;
     }
 }
