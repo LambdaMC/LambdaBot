@@ -66,6 +66,7 @@ public class LambdaBot extends JavaPlugin {
     @Override
     public void onDisable() {
         api.shutdown();
+        api = null;
     }
 
     public void registerMinecraftEvents() {
@@ -105,12 +106,14 @@ public class LambdaBot extends JavaPlugin {
         guild.upsertCommand("jugador", "Manda información sobre un jugador")
                 .addOption(OptionType.STRING, "nombre", "El nombre del jugador", true, true)
                 .queue();
-        guild.updateCommands().addCommands(
-                Commands.slash("normas", "Manda las normas."),
-                Commands.slash("ip", "Manda la IP del servidor."),
-                Commands.slash("informacion", "Manda la información principal del servidor."),
-                Commands.slash("conectados", "Manda una lista con los jugadores conectados")
-        ).queue();
+        guild.upsertCommand("normas", "Manda las normas.")
+                .queue();
+        guild.upsertCommand("ip", "Manda la IP del servidor.")
+                .queue();
+        guild.upsertCommand("informacion", "Manda la información principal del servidor.")
+                .queue();
+        guild.upsertCommand("conectados", "Manda una lista con los jugadores conectados")
+                .queue();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.kryeit.commands;
 
+import com.kryeit.GriefDefender.GriefDefenderImpl;
 import com.kryeit.utils.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
@@ -44,10 +45,13 @@ public class JugadorCommand extends ListenerAdapter {
             eb.setTitle(name);
             eb.addField("Tiempo jugado", timePlayed,false);
             if(player.isOnline()) {
-                eb.addField("Última vez conectado", "Está conectado en el servidor", false);
+                eb.addField("Última vez conectado", "Está conectado en el servidor.", false);
 
             } else {
                 eb.addField("Última vez conectado", "Hace " + Utils.getTime((int) timeDifference/1000), false);
+            }
+            if(GriefDefenderImpl.isAvailable()) {
+                eb.addField("Bloques de protección", String.valueOf(GriefDefenderImpl.getClaimBlocks(player.getUniqueId())), false);
             }
 
             event.replyEmbeds(eb.build()).queue();

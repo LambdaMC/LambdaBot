@@ -25,6 +25,10 @@ repositories {
     maven{
         url = 'https://maven.enginehub.org/repo/'
     }
+    maven {
+        name = 'GriefDefender'
+        url = 'https://repo.glaremasters.me/repository/bloodshot'
+    }
 }
 
 dependencies {
@@ -32,6 +36,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation("net.dv8tion:JDA:5.0.0-beta.2")
     compileOnly "org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT"
+    compileOnly "com.griefdefender:api:2.1.0-20220122.032038-5"
 
 
 }
